@@ -3481,6 +3481,10 @@ def render_tw_premarket_tab():
 - 摘要：{clinical_info or "（未填）"}
 """
         st.session_state["tw_app_markdown"] = app_md
+        # ⭐關鍵：同步更新 editor widget 的 key，讓 UI 立即顯示新內容
+        st.session_state["tw_app_md_edited"] = app_md
+        st.session_state["tw_app_effective_md"] = app_md  # 可選：讓後續 screening 直接吃到最新
+        st.rerun()  # 可選但建議，確保 UI 即刻刷新
 
     st.markdown("##### 申請書 Markdown（可編輯）")
     app_md_current = st.session_state.get("tw_app_markdown", "")
