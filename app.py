@@ -2569,6 +2569,8 @@ def agent_run_ui(
                 )
                 st.session_state[f"{tab_key}_output"] = out
                 st.session_state[status_key] = "done"
+                st.session_state[f"{tab_key}_output_edited"] = out
+                st.rerun()  # 建議
                 token_est = est_tokens(user_full + out)
                 log_event(tab_label_for_history or tab_key, agent_name, model, token_est, meta={"agent_id": agent_id})
             except Exception as e:
